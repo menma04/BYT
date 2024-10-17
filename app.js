@@ -32,16 +32,16 @@ app.use(express.static(path.resolve('./public')));
 
 app.get("/", async (req,res) => {
     const allBlogs = await Blog.find({});
-    let objU = null;
+    // let objU = null;
 
-    if (req.user) {
-        objU = await User.findById(req.user._id);
-    }
+    // if (req.user) {
+    //     objU = await User.findById(req.user._id);
+    // }
 
     res.render("home",
        {user: req.user,
         blogs: allBlogs,
-        objU,
+        //objU,
        } 
     );
 });
