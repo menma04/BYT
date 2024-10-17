@@ -31,11 +31,17 @@ app.use(express.static(path.resolve('./public')));
 
 
 app.get("/", async (req,res) => {
-    //console.log("The user is undefined",req.user);
     const allBlogs = await Blog.find({});
+    let objU = null;
+
+    if (req.user) {
+        objU = await User.findById(req.user._id);
+    }
+
     res.render("home",
        {user: req.user,
         blogs: allBlogs,
+        objU,
        } 
     );
 });
